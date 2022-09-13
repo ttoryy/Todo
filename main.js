@@ -1,20 +1,35 @@
-'use strict'
-function addItem() {
-    let list = document.getElementById('todolist');
-    let todo = document.getElementById('item');
-    let listitem = document.getElementById('li');
-    let xbtn = document.getElementById('button');
+const toDoForm = document.querySelector(".js-toDoForm"),
+    toDoInput = toDoForm.querySelector("input"),
+    toDoList = document.querySelector(".js-toDoList");
+
+const TODOS_LS = 'toDos';
+
+function paintTodo(text) {
+    const li = document.createElement("li");
+    const delBtn = document.createElement("button");
+    delBtn.innerText = "❌";
+    const span = document.createElement("span");
+    span.innerText = text
+    li.appendChild(span);
+    li.appendChild(delBtn);
+    toDoList.appendChild(li);
 }
 
-xbtn.onclick = function (e) {
-    let pnode = e.target.parentNode;
-    list.removeChild(pnode);
+function hadnleSubmit(event) {
+    event.preventDefault();
+    const currentValue = toDoInput.value;
+    paintTodo(currentValue);
+    toDoInput.value = "";
 }
 
-listitem.innerText = todo.value;
-listitem.appendChild(xbtn);
+function loadTodos() {
+    const toDos = localStorage.getItem(TODOS_LS)
+    if (toDos !== null) {
+    }
+}
 
-list.appendChild(listitem);
-
-todo.value = '';
-todo.focus();
+function init() {
+    loadTodos();
+    toDoForm.addEventListener("submit", hadnleSubmit)
+}
+init();

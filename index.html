@@ -5,22 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <script src="main.js" defer></script>
     <title>Todo</title>
 </head>
 
 <body>
     <h1>Todo-List</h1>
     <hr>
-    <div class="input-group">
-        <input id="item" class="form-control" type="text" placeholder="할일을 입력하세요..">
-        <button type="button" class="btn btn-primary" onclick="addItem()"> + </button>
-    </div>
-    <hr>
-    <ul id="todolist"></ul>
+    <form class="js-toDoForm">
+        <input type="text" placeholder="할 일을 입력하세요." />
+    </form>
+    <ul class="js-toDoList">
+    </ul>
 
-    </div>
+    <script src="main.js"></script>
 </body>
 
 </html>
