@@ -8,9 +8,18 @@ function paintTodo(text) {
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
     delBtn.innerText = "❌";
+    delBtn.addEventListener('click', () => {
+        li.remove(span);
+    })
+    const finishBtn = document.createElement("button");
+    finishBtn.innerText = "✔️";
+    finishBtn.addEventListener('click', () => {
+        span.style.textDecorationLine = "line-through";
+    })
     const span = document.createElement("span");
     span.innerText = text
     li.appendChild(span);
+    li.appendChild(finishBtn);
     li.appendChild(delBtn);
     toDoList.appendChild(li);
 }
