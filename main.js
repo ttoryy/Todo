@@ -6,16 +6,12 @@ const toDoForm = document.querySelector(".js-toDoForm"),
 
 const TODOS_LS = 'toDos';
 
-function filterFn(toDo) {
-    return toDo.id === 1; //filter는 array의 모든 아이템을 통해 함수를 실행하고 true인 아이템들만 가지고 새로운 array를 만든다
-}
-
-let toDos = [];
+let toDos = []; //toDos는 array임
 
 function deleteToDo(event) {
     const btn = event.target;
-    const li = btn.parentNode;
-    toDoList.removeChild(li);
+    const li = btn.parentNode; //btn의 부모를 찾기위해 console.dir사용해서 알아내기 >li
+    toDoList.removeChild(li); //여기까지는 del 작동, 근데 새로고침하면 남아있음
     const cleanToDos = toDos.filter(function (toDo) {
         return toDo.id !== parseInt(li.id); //parseInt 스트링을 숫자로 바꿔줌
     }); //claenTOdos와 filter가 하는 것은 filterFn이 체크가 된 아이템들의 array를 주는것
@@ -25,7 +21,7 @@ function deleteToDo(event) {
 
 function saveToDOs() {
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
-}
+} //localStorage.setItem (key, value) 추가
 
 function paintTodo(text) {
     const li = document.createElement("li");

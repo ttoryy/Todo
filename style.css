@@ -73,8 +73,3 @@ li button {
     background-color: var(--main-color);
     padding: 5px 5px 5px 5px;
 }
-
-/*
-save localstorage 리스트 저장했더니 del해도 안지워짐^^ㅋ
-
-delete 버튼, allclear 버튼 만들기
