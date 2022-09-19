@@ -19,6 +19,25 @@ function deleteToDo(event) {
     saveToDOs();
 }
 
+/*
+function editTodo(event) {
+    const todoElem = e.target;
+    const inputText = e.target.innerText;
+    const todoItemElem = todoElem.parentNode;
+    console.dir(todoElem);
+
+}
+inputElem.value = toDos;
+inputElem.classList.add('edit-input');
+inputElem.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        paintTodo(e.target.value, newId);
+        document.body.removeEventListener('click', onClickBody);
+    }
+})
+수정 코드 추가하기... 오또케행...흑흑 절대 작동안함
+*/
+
 function saveToDOs() {
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 } //localStorage.setItem (key, value) 추가
@@ -29,8 +48,10 @@ function paintTodo(text) {
     delBtn.innerText = "❌";
     delBtn.addEventListener('click', deleteToDo);
     const span = document.createElement("span");
+    const inputElem = document.createElement('input');
     const newId = toDos.length + 1;
     span.innerText = text
+    //li.appendChild(inputElem);
     li.appendChild(span);
     li.appendChild(delBtn);
     li.id = newId;
