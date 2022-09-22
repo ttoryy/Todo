@@ -19,41 +19,33 @@ function deleteToDo(event) {
     saveToDOs();
 }
 
-/*
-function editTodo(event) {
-    const todoElem = e.target;
-    const inputText = e.target.innerText;
-    const todoItemElem = todoElem.parentNode;
-    console.dir(todoElem);
-
-}
-inputElem.value = toDos;
-inputElem.classList.add('edit-input');
-inputElem.addEventListener('keypress', (event) => {
-    if (event.key === 'Enter') {
-        paintTodo(e.target.value, newId);
-        document.body.removeEventListener('click', onClickBody);
-    }
-})
-수정 코드 추가하기... 오또케행...흑흑 절대 작동안함
-*/
-
 function saveToDOs() {
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
+    //localStorage.setItem(finishBtn);
 } //localStorage.setItem (key, value) 추가
 
 function paintTodo(text) {
     const li = document.createElement("li");
+
+    const finishBtn = document.createElement("button");
+    finishBtn.innerText = "✔️";
+    finishBtn.addEventListener('click', () => {
+        div.style.textDecoration = "line-through";
+        saveToDOs();
+    });
+
     const delBtn = document.createElement("button");
     delBtn.innerText = "❌";
     delBtn.addEventListener('click', deleteToDo);
-    const span = document.createElement("span");
-    const inputElem = document.createElement('input');
+
+    const div = document.createElement("div");
     const newId = toDos.length + 1;
-    span.innerText = text
-    //li.appendChild(inputElem);
-    li.appendChild(span);
+    div.innerText = text;
+
+    li.appendChild(div);
+    li.appendChild(finishBtn);
     li.appendChild(delBtn);
+
     li.id = newId;
     toDoList.appendChild(li);
     const toDoObj = {
@@ -61,6 +53,11 @@ function paintTodo(text) {
         id: newId
     };
     toDos.push(toDoObj);
+    saveToDOs();
+}
+
+function finishTodo() {
+    ul.style.textDecoration = "line-through";
     saveToDOs();
 }
 
