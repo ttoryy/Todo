@@ -2,12 +2,14 @@
 
 const toDoForm = document.querySelector(".js-toDoForm"),
     toDoInput = toDoForm.querySelector("input"),
-    toDoList = document.querySelector(".js-toDoList");
+    toDoList = document.querySelector(".js-toDoList"),
+    toDoClear = document.querySelector(".clear");
 
 const TODOS_LS = 'toDos';
 
 let toDos = []; //toDos는 array임
 
+// list 삭제
 function deleteToDo(event) {
     const btn = event.target;
     const li = btn.parentNode; //btn의 부모를 찾기위해 console.dir사용해서 알아내기 >li
@@ -19,13 +21,13 @@ function deleteToDo(event) {
     saveToDOs();
 }
 
-function allClear() {
-    const allClearBtn = document.querySelector(".allClear");
-    allClearBtn.addEventListener("click", () => {
-        toDoList.removeChild(li);
-    });
+// 전체 삭제
+function clearTodos() {
+    localStorage.removeItem(TODOS_LS, JSON.stringify(toDos)); //local storage 삭제
+    let ul = document.querySelector('ul').innerHTML = '';
 }
 
+// local storage 저장
 function saveToDOs() {
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 } //localStorage.setItem (key, value) 추가
@@ -42,6 +44,8 @@ function paintTodo(text) {
     const delBtn = document.createElement("button");
     delBtn.innerText = "❌";
     delBtn.addEventListener("click", deleteToDo);
+
+    toDoClear.addEventListener("click", clearTodos);
 
     const div = document.createElement("div");
     const newId = toDos.length + 1;
@@ -84,5 +88,3 @@ function init() {
     toDoForm.addEventListener("submit", hadnleSubmit);
 }
 init();
-
-//allClear 버튼 구현하기, 코드 작동안됨

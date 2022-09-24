@@ -67,7 +67,7 @@ li button {
     text-align: center;
 }
 
-.allClear {
+.clear {
     border: none;
     border-radius: 5px;
     background-color: var(--main-color);
