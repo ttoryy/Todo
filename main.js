@@ -19,9 +19,15 @@ function deleteToDo(event) {
     saveToDOs();
 }
 
+function allClear() {
+    const allClearBtn = document.querySelector(".allClear");
+    allClearBtn.addEventListener("click", () => {
+        toDoList.removeChild(li);
+    });
+}
+
 function saveToDOs() {
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
-    //localStorage.setItem(finishBtn);
 } //localStorage.setItem (key, value) 추가
 
 function paintTodo(text) {
@@ -29,14 +35,13 @@ function paintTodo(text) {
 
     const finishBtn = document.createElement("button");
     finishBtn.innerText = "✔️";
-    finishBtn.addEventListener('click', () => {
+    finishBtn.addEventListener("click", () => {
         div.style.textDecoration = "line-through";
-        saveToDOs();
     });
 
     const delBtn = document.createElement("button");
     delBtn.innerText = "❌";
-    delBtn.addEventListener('click', deleteToDo);
+    delBtn.addEventListener("click", deleteToDo);
 
     const div = document.createElement("div");
     const newId = toDos.length + 1;
@@ -54,12 +59,7 @@ function paintTodo(text) {
     };
     toDos.push(toDoObj);
     saveToDOs();
-}
-
-function finishTodo() {
-    ul.style.textDecoration = "line-through";
-    saveToDOs();
-}
+};
 
 function hadnleSubmit(event) {
     event.preventDefault();
@@ -77,10 +77,12 @@ function loadTodos() {
             paintTodo(toDo.text);
         });
     }
-}
+};
 
 function init() {
     loadTodos();
-    toDoForm.addEventListener("submit", hadnleSubmit)
+    toDoForm.addEventListener("submit", hadnleSubmit);
 }
 init();
+
+//allClear 버튼 구현하기, 코드 작동안됨
